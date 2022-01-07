@@ -1,0 +1,85 @@
+<%- include ../layouts/header.ejs %>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item active" aria-current="page"></li>Home</li>
+    <li class="breadcrumb-item "><a href="/users/playlists/<%=u_id%>">Playlist</a></li> 
+	<li class="breadcrumb-item "><a href="/users/upgrade/<%=u_id%>">Upgrade Plan</a></li> 
+    <% if(role === 2) {%>
+    <li class="breadcrumb-item "><a href="/users/query/<%=u_id%>">Query</a></li> 
+    <%}%>
+</ol>
+</nav>
+<div class="ad-div"> 
+    <button id="close-btn" ><i class="fas fa-times"></i></button>
+</div>
+<%if(data!= ""){%>
+    <div id="container">
+<% data.forEach(function(record){ %>
+    <div id="card">
+        <div class="album-cover">
+          <img class="song-img" src="<%=record.img%>">
+          <h4 class="song-title">
+              <%=record.name%>
+          </h4>
+          <p class="artist-title">
+            <%=record.artist%>
+          </p>
+        </div>
+        <div class="buttons">
+          <img class="btn img" id="<%=record._id%>" src="/css/img/pause.png" onclick="clickHandler(this.id)">
+          <audio id="<%=record._id+'audio' %>">  
+              <source src="<%= record.link %>" type="audio/mpeg">  
+            Your browser does not support the html audio tag.  
+            </audio>
+            <% if (record.type === "PRO") { %>
+                <div id="star">
+                <img style="height: 50px;width:55px"src="/css/img/star.png">
+                </div>
+              <% } %>
+        </div>
+       
+      </div>    
+       
+<%})}else{%>
+    <h1>No songs found :(</h1>
+    <%}%>
+</div>
+    </body>
+    <%- include ../layouts/footer.ejs %>
+    <script >
+         function clickHandler(imgId){
+        var audioId = imgId+'audio';
+        var audioPlayer = document.getElementById(audioId);
+        
+            if(audioPlayer.paused) {
+                var audioPlayers = document.getElementsByTagName("audio");
+                $.each(audioPlayers, function( index, value ) {
+                    if(value.played){
+                          value.pause();
+                        $('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
+                    }
+                });
+                 
+                audioPlayer.play();
+                $('#'+imgId).attr("src","/css/img/play.png");
+                
+            }else{
+                audioPlayer.pause();
+                $('#'+imgId).attr("src","/css/img/pause.png");
+        }
+    }
+    
+    function showad(){
+        $('.ad-div').show();
+    }
+    function closead(){
+        $('.ad-div').hide();
+    }
+    setInterval(showad,60000);
+    $('#close-btn').click(function(){
+        closead();
+    })
+    
+    </script>
+    </html>
+   

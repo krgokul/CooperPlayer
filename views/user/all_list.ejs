@@ -1,0 +1,90 @@
+<%- include ../layouts/header.ejs %>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item "><a href="/users/<%=u_id%>">Home</a></li>
+    <li class="breadcrumb-item "><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>
+	<li class="breadcrumb-item active">All List</li>
+</ol>
+</nav>
+<div class="playlist_div">
+    <div class="playlist_name">
+    <% data.forEach(function(record){ %>
+        <% if(record.name === playlist_name) {%>
+                <h2><%=record.name%></h2>
+                <form action='/users/addsongs/<%= u_id %>/<%=playlist_name%>' method="get">
+                    <button class="btn btn-primary">Add Songs</button>
+                </form>
+                <% if(record.songs ==="") {%> 
+                <p>No Songs</p>
+                <%}else{%>
+                    <div class="song_table">
+                        <div>
+                        <table style =" background-color: white;">
+                            <thead style="background-color: rgb(27, 23, 37); color: white; text-align: center; font-weight: lighter;">
+                            <tr>
+                                <th>SONG NAME</th>
+                                <th>TYPE</th>
+                                <th>SONG</th>
+                                <th>GENRE</th>
+                                <th>ARTIST</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                <% record.songs.forEach(function(res){%>
+                    <% songslist.forEach(function(cur){ %>
+                       <% if(cur.name === res) { %>
+                        <tr>
+                            <td><%= cur.name %></td>
+                            <td><%= cur.type %></td>
+                            <td>
+                                <img class="btn img" id="<%=cur._id%>"  src="/css/img/pause.png" onclick="clickHandler(this.id)">
+                                <audio id="<%=cur._id+'audio' %>">  
+                                <source src="<%= cur.link %>" type="audio/mpeg" >  
+                              Your browser does not support the html audio tag.  
+                              </audio> </td>
+                            <td><%= cur.genre %></td>
+                            <td><%= cur.artist %></td>
+                            <td>
+                                <form method="post" action="/users/deletefromplaylist/<%=playlist_name%>/<%=res%>/<%=u_id%>" style= "float:right; margin-bottom: 0;" >
+                                    <button class="btn btn-outline-danger"  ><i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>       
+                       <% } %>
+                    <%})%>    
+                <% })%>
+        </table>
+        </div>
+            <%}%>
+        <%}%>   
+    <%})%>
+    </div>
+</div>
+<script>
+
+
+
+    function clickHandler(imgId){
+var audioId = imgId+'audio';
+var audioPlayer = document.getElementById(audioId);
+
+	if(audioPlayer.paused) {
+		var audioPlayers = document.getElementsByTagName("audio");
+		$.each(audioPlayers, function( index, value ) {
+			if(value.played){
+  				value.pause();
+				$('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
+			}
+		});
+		
+		audioPlayer.play();
+		$('#'+imgId).attr("src","/css/img/play.png");
+		
+	}else{
+		audioPlayer.pause();
+		$('#'+imgId).attr("src","/css/img/pause.png");
+}
+}
+</script>
+<%- include ../layouts/footer.ejs %>

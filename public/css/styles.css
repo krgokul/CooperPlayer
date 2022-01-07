@@ -1,0 +1,336 @@
+#body {
+  font-family: "Roboto", sans-serif;
+  background-color: #d3e4cd;
+  font-weight: bold;
+}
+table {
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.5rem;
+  min-width: 840px;
+  box-shadow: inset;
+}
+table th,
+td {
+  text-align: center;
+  padding: 9px 10px;
+}
+tr:nth-child(even) {
+  background-color: #ebe9e9;
+}
+.list {
+  margin-left: auto;
+  margin-right: auto;
+  height: fit-content;
+  vertical-align: middle;
+  width: fit-content;
+}
+.img {
+  width: 82px;
+  height: 48px;
+  padding: 0;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  --accent-color: #641bff;
+  --heading-font-family: "Poppins", sans-serif;
+  --body-font-family: "Lato", sans-serif;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  --accent-color: #641bff;
+  --heading-font-family: "Poppins", sans-serif;
+  --body-font-family: "Lato", sans-serif;
+}
+
+#plan-body {
+  margin: 0;
+  background-color: #f8f9fb;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--body-font-family);
+}
+
+.price-comparison {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin: 1rem;
+}
+
+.price-column {
+  background-color: white;
+  box-shadow: 0 7px 30px rgba(52, 31, 97, 0.1);
+  padding: 2rem;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 275px;
+  border-radius: 8px;
+}
+
+.price-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--heading-font-family);
+  font-weight: bold;
+}
+#cmt_section {
+  margin-left: 25rem;
+}
+textarea {
+  margin-top: 10px;
+  margin-left: 50px;
+  width: 500px;
+  height: 100px;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: none repeat scroll 0 0 rgb(255, 255, 255);
+  border-color: -moz-use-text-color #ffffff #ffffff -moz-use-text-color;
+  border-image: none;
+  border-radius: 6px 6px 6px 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.2s ease 0s;
+}
+.price {
+  font-size: 3.5rem;
+  display: flex;
+}
+
+.dollar-sign {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.per-month {
+  font-size: 0.75rem;
+  align-self: flex-end;
+  margin-bottom: 1.1rem;
+  text-transform: uppercase;
+}
+
+.plan-name {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.feature {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.feature img {
+  height: 1.1em;
+  width: 1.1em;
+  margin-right: 0.5rem;
+}
+
+.feature.inactive {
+  color: #999;
+  text-decoration-line: line-through;
+}
+
+.cta {
+  border: none;
+  background-color: var(--accent-color);
+  color: white;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-family: var(--heading-font-family);
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 3rem;
+  transition: 100ms;
+  transform: scale(1);
+}
+.cta:hover,
+.cta:focus {
+  transform: scale(1.1);
+}
+i {
+  padding: 6px;
+}
+.plan-head {
+  text-transform: uppercase;
+  text-align: center;
+}
+#plan-nav {
+  padding-left: 160px;
+}
+#container {
+  padding: 0;
+  width: fit-content;
+}
+
+#secondContainer {
+  margin: auto;
+}
+
+#card {
+  width: 170px;
+  height: 260px;
+  background-color: whitesmoke;
+  border-radius: 2em;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: inline-flex;
+  margin: 10px;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  flex-wrap: nowrap;
+}
+#play_id {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+#play_div {
+  display: flex;
+  text-align: center;
+  height: 550px;
+  justify-content: center;
+  align-items: center;
+}
+.album-cover {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#star {
+  width: 55px;
+  height: 50px;
+  position: absolute;
+  right: -13;
+  bottom: 0;
+}
+#music {
+  width: 250px;
+  height: 200px;
+}
+.song-title {
+  text-align: center;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 7px;
+  color: var(--dark-gray);
+  font-size: medium;
+}
+.artist-title {
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 0;
+  font-size: 11px;
+  color: var(--dark-gray);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  position: relative;
+}
+
+.btn {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  border-radius: 30px;
+  color: var(--gray);
+  outline: none;
+  cursor: pointer;
+}
+.song-img {
+  width: 100%;
+  border-radius: 25px;
+  height: 100%;
+}
+
+h2 {
+  padding: 8px 4px;
+}
+.centered {
+  padding-top: 200px;
+  text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+.home-body {
+  background-image: url(/css/img/back.jpg);
+}
+.playlists {
+  padding: 8px;
+}
+#play-link {
+  text-decoration: none;
+}
+.ad-div {
+  position: absolute;
+  background-image: url("/css/img/shoe.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 452px;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 0 0 10px black;
+  border-radius: 5px;
+}
+#close-btn {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  padding: 3px;
+}

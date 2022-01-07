@@ -1,0 +1,33 @@
+<%- include ../layouts/header.ejs %>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	<li class="breadcrumb-item " aria-current="page"><a href="/users/<%=u_id%>">Home</a></li>
+    <li class="breadcrumb-item "><a href="/users/playlists/<%=u_id%>">Create Playlist</a></li> 
+	<li class="breadcrumb-item active">All PlayLists</li>
+</ol>
+</nav>
+<%if(data!= ""){%>
+<div id="container">
+<% data.forEach(function(record){ %>
+    <a id="play-link" href="/users/all_list/<%=u_id%>/<%= record.name %>">
+        <div id="card">
+        <div class="album-cover">
+          <img class="song-img" src="/css/img/play.webp">
+          <h4 class="song-title">
+              <%=record.name%>
+          </h4>
+        </div>
+        <div class="buttons">
+            <form method="post" action="/users/delete_list/<%=u_id%>/<%= record.name %>" style="float:right; margin-bottom: 0;" >
+            <button class="btn btn-danger" name="delete"  onClick="return confirm('Are you sure you want to delete the playlist?')" ><i class="far fa-trash-alt"></i></button>
+            <input type="hidden" name="_method" value="DELETE" />
+        </form>   
+     </div>
+        </div>
+    </a>
+<%})}else{%>
+    <h1>No PlayList found :(</h1>
+    <%}%>
+</div>
+   
+<%- include ../layouts/footer.ejs %>

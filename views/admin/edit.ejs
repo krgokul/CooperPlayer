@@ -1,0 +1,56 @@
+<!--
+including header content which is common for all pages
+--><%- include ../layouts/header.ejs %>	
+		
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<div class="container-fluid" style="margin-top: 30px;">
+	<div class="row">
+		<div class="col-6">
+			<form action="/admin/edit/<%= id %>" method="post" >
+				
+			<div class="mb-3">
+				<label class="form-label"> Song Name </label>
+				<input name="name" class="form-control" type="text" value="<%= name%>"/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label"> Song Type </label>
+					<input name="type" class="form-control" type="text" value="<%= type%>" />
+				</div>
+				<div class="mb-3">
+					<label class="form-label"> Image Url </label>
+					<input name="img" class="form-control" type="text" value="<%= img%>" />
+					</div>
+				<div class="mb-3">
+						<label class="form-label"> Song Link </label>
+						<input name="link" class="form-control" type="text" value="<%= link%>" />
+				</div>	
+				<div class="mb-3">
+					<label class="form-label"> Genre </label>
+					<input name="genre" class="form-control" type="text" value="<%= genre%>"/>
+					</div>
+				<div class="mb-3">
+				<label class="form-label"> Artists </label>
+				<input name="artist" class="form-control" type="text" value="<%= artist%>" />
+				</div>
+				
+				<div class="buttonContainer">
+					<input type="submit" class="btn btn-outline-success" value="Update"/>
+				</div>
+				<input type="hidden" name="_method" value="PUT" />
+			</form>
+		</div>
+
+	</div>
+</div>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>

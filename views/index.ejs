@@ -1,0 +1,24 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include layouts/header.ejs %>	
+<!-- <a href="/admin/add/song">Add New Song</a> |
+<a href="/admin/add/plan">Add New Plan</a> | 
+<a href="/admin/song">All Songs List</a> |
+<a href="/admin/plan">All Plans List</a> -->
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Home</li>
+      <li class="breadcrumb-item"><a  href="/admin/add/song">Add Song</a></li>
+      <li class="breadcrumb-item"><a href="/admin/add/plan">Add Plan</a></li>
+      <li class="breadcrumb-item"><a href="/admin/song">All Songs</a></li>
+      <li class="breadcrumb-item"><a href="/admin/plan">All Plans</a></li>
+      <li class="breadcrumb-item"><a href="/admin/sales">Sales Report</a></li>
+    </ol>
+  </nav>
+<h1><%= title %></h1>
+<!--
+including footer content which is common for all pages
+-->
+<%- include layouts/footer.ejs %>

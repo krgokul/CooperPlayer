@@ -1,0 +1,117 @@
+<%- include ../layouts/header.ejs %>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/admin/admin_home">Home</a></li>  
+		<% if(type === 'song') {%>
+			<li class="breadcrumb-item active" aria-current="page"></li>All Songs</li>
+		<% } else {%>
+			<li class="breadcrumb-item active" aria-current="page"></li>All Plans</li>
+			<% } %>			
+	</ol>
+  </nav>
+  <h1><%= title %></h1>
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>	
+	<input type="text" id="songSearch" placeholder="🔍"> 
+<div>
+<table style =" background-color: white;">
+	<thead style="background-color: rgb(27, 23, 37); color: white; text-align: center; font-weight: lighter;">
+	<tr>
+		<%if(type=="song"){%>
+		<th>SONG NAME</th>
+		<th>TYPE</th>
+		<th>LINK</th>
+		<th>GENRE</th>
+		<th>ARTIST</th>
+		
+		<%}else{%>
+			<th>PLAN NAME</th>
+			<th>PRICE</th>
+			<th>DURATION</th>
+			<th>DOWNLOADS</th>
+			<th>QUALITY</th>
+			<%}%>
+			<th>ACTION</th>
+	</tr>
+	
+	</thead>
+	<% if (data)  { %>
+	<% data.forEach(function(record){ %>
+		<tr>
+			<%if(type=="song"){%>
+			<td><%= record.name %></td>
+			<td><%= record.type %></td>
+			<td>
+				<img class="btn img" id="<%=record._id%>"  src="/css/img/pause.png" onclick="clickHandler(this.id)">
+				
+				<audio id="<%=record._id+'audio' %>">  
+				<source src="<%= record.link %>" type="audio/mpeg" >  
+			  Your browser does not support the html audio tag.  
+			  </audio> </td>
+			<td><%= record.genre %></td>
+			<td><%= record.artist %></td>
+			<%}else{%>
+			<td><%= record.name %></td>
+			<td><%= record.price %></td>
+			<td><%= record.duration %></td>
+			<td><%= record.downloads %></td>
+			<td><%= record.quality%></td>
+				<%}%>
+			<td>
+				<div class="list">
+					<%if(type=="song"){%>
+					<a class= "btn btn-outline-success"href='/admin/edit/<%= record._id %>'><i class="far fa-pencil"></i></a><span class="glyphicon glyphicon-pencil"></span></a> &nbsp;							
+					<%}%>
+					<form method="post" action="/admin/delete/<%= record._id %>/<%= type %>" style="float:right; margin-bottom: 0;" >
+						<button class="btn btn-outline-danger" name="delete"  onClick="return confirm('Are you sure you want to delete?')" ><i class="far fa-trash-alt"></i></button>
+						<input type="hidden" name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+</div>
+</body>
+<script>
+	$("#songSearch").on("keyup",function()
+	{
+		var value= $(this).val();
+		$("table tr").each(function(records){
+			if(records !== 0){
+				var id =$(this).find("td:first").text();
+				if(id.indexOf(value)!==0 && id.toLowerCase().indexOf(value.toLowerCase()) !== 0) $(this).hide();
+				else 	$(this).show();
+			}
+		});
+	});
+function clickHandler(imgId){
+var audioId = imgId+'audio';
+var audioPlayer = document.getElementById(audioId);
+
+	if(audioPlayer.paused) {
+		var audioPlayers = document.getElementsByTagName("audio");
+		$.each(audioPlayers, function( index, value ) {
+			if(value.played){
+  				value.pause();
+				$('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
+			}
+		});
+		
+		audioPlayer.play();
+		$('#'+imgId).attr("src","/css/img/play.png");
+		
+	}else{
+		audioPlayer.pause();
+		$('#'+imgId).attr("src","/css/img/pause.png");
+}
+}
+</script>
+</html>	

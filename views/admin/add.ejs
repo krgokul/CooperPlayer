@@ -1,0 +1,108 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>	
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+	  <li class="breadcrumb-item"><a href="/admin/admin_home">Home</a></li>  
+<% if(action === 'song') {%>
+	<li class="breadcrumb-item active" aria-current="page"></li>Add Song</li>
+<% } else {%>
+	<li class="breadcrumb-item active" aria-current="page"></li>Add Plan</li>
+	<% } %>	
+</ol>
+</nav>
+<h1><%= title %></h1>
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+<div class="container-fluid" style="margin-top: 30px;">
+	<div class="row">
+		<div class="col-6">
+			<form action="/admin/add/<%= action %>" method="post" name="form1">
+				<% if(action=='song') {%>
+				<div class="mb-3">
+				<label class="form-label"> Song Name </label>
+				<input name="name" class="form-control" type="text" value="<%= name%>"/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label"> Song Type </label>
+					<input name="type" class="form-control" type="text" value="<%= type%>" />
+				</div>
+				<div class="mb-3">
+						<label class="form-label"> Song Link </label>
+						<input name="link" class="form-control" type="text" value="<%= link%>" />
+				</div>	
+				<div class="mb-3">
+					<label class="form-label"> Image </label>
+					<input name="img" class="form-control" type="text" value="<%= img%>"/>
+					</div>
+				<div class="mb-3">
+					<label class="form-label"> Genre </label>
+					<input name="genre" class="form-control" type="text" value="<%= genre%>"/>
+					</div>
+				<div class="mb-3">
+				<label class="form-label"> Artists </label>
+				<input name="artist" class="form-control" type="text" value="<%= artist%>" />
+				</div>
+				<%}else{%>
+					<div class="mb-3">
+						<label class="form-label"> Plan Name </label>
+						<input name="name" class="form-control" type="text" value="<%= name %>"/>
+						</div>
+						<div class="mb-3">
+							<label class="form-label"> Pricing </label>
+							<input name="price" class="form-control" type="number" value="<%= price %>" />
+						</div>
+						<div class="mb-3">
+								<label class="form-label"> Duration </label>
+								<input name="duration" class="form-control" type="number" value="<%= duration %>" />
+						</div>
+						<label class="form-label"> Downloads </label><br>
+						<div class="form-check form-check-inline">
+							
+							<input name="downloads" class="form-check-input" id="inlineRadio1" type="radio" value="Unlimited" />  
+							<label class="form-check-label" for="inlineRadio1">Unlimited</label>
+							
+						</div>
+						<div class="form-check form-check-inline">
+						
+							<input name="downloads" class="form-check-input" id="inlineRadio2" type="radio" value="Limited" />  
+							<label class="form-check-label" for="inlineRadio2">Limited</label>
+						</div><br>
+						<label class="form-label">Audio Quality</label>
+						<br>
+						<div class="form-check form-check-inline">
+							
+							<input name="quality" class="form-check-input" id="inlineRadio3" type="radio" value="Medium" />  
+							<label class="form-check-label" for="inlineRadio3">Medium</label>
+							
+						</div>
+						<div class="form-check form-check-inline">
+						
+							<input name="quality" class="form-check-input" id="inlineRadio4" type="radio" value="High" />  
+							<label class="form-check-label" for="inlineRadio4">High</label>
+						</div>
+						<div class="mb-3">
+							<label class="form-label"> Devices </label>
+							<input name="devices" class="form-control" type="number" value="<%= devices%>" />
+						</div>
+						
+						<div></div>	
+				<%}%>
+				<div class="buttonContainer">
+					<button type="submit" class="btn btn-primary" value="Add">Submit</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
