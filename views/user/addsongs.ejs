@@ -1,9 +1,10 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-        <li class="breadcrumb-item" aria-current="page"><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>
+<header>
+    <nav class="nav-area">
+        <li><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>
 </ol>
 </nav>
+</header>
 <div class="song_table">
     <div>
     <table style =" background-color: white;">
@@ -16,7 +17,6 @@
             <th>ARTIST</th>
             <th>ACTION</th>
         </tr>
-        
         </thead>
         <% if (data)  { %>
         <% data.forEach(function(record){ %>
@@ -32,11 +32,7 @@
                 <td><%= record.genre %></td>
                 <td><%= record.artist %></td>
                 <td>
-                    <form action="/users/addtoplaylist/<%=playlist_name%>/<%=record.name%>/<%=u_id%>" >
-                    <div class="list">
-                        <button type="submit"><i class="fas fa-plus"></i></button>					
-                    </div>
-                </form>
+                    <a href="/users/addtoplaylist/<%=playlist_name%>/<%=record.name%>/<%=u_id%>"><i class="fas fa-plus" style="border-radius: 50%;color: #ec255a;"></i></a>
                 </td>
             </tr>
         <% }) %>

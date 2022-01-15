@@ -1,9 +1,10 @@
 var express = require('express')
-
 var app = express()
 var ObjectId = require('mongodb').ObjectId
-
+const obj = require('./users')
 // SHOW LIST OF USERS
+var HashMap = require('hashmap');
+var plans =  new HashMap();
 app.get('/:action', function(req, res, next) {	
 	// fetch and sort users collection by id in descending order
 	if(req.params.action==="song"){
@@ -47,7 +48,26 @@ app.get('/:action', function(req, res, next) {
 		})
 	}
 	else if(req.params.action=== "sales"){
-		res.render('admin/sales',{title:"Sales Report"})
+		obj.User.find({},{"_id":0,"plan": 1},function(err,result){
+			var arr= [];
+			result.forEach(ele=>{
+				if(ele.plan!='')	arr.push(ele.plan)
+			})
+			res.render('admin/sales',{title:"Sales Report",res:arr})
+		})
+	}
+	else if(req.params.action=== "comments"){	
+		obj.User.find({}, (err,res1) => {
+			var arr = [];
+			obj.Comment.find({},(err,res2)=>{
+				res2.forEach(element => {
+					const obj = res1.find( cur => String(element.user_id) === String(cur._id))
+					arr.push({"name":obj.name,"comment":element.comment})
+				});
+				res.render('admin/comments',{title:"Comments",query:arr})
+			})
+		})
+		
 	}
 	else{
 		res.render('index',{title:"Cooper Player"})
@@ -180,7 +200,6 @@ app.put('/edit/(:id)', function(req, res, next) {
 			genre: req.body.genre,
 			artist: req.body.artist
 		}
-		console.log(song);
 		var o_id = new ObjectId(req.params.id)
 		req.db.collection('songs').update({"_id": o_id}, song, function(err, result) {
 			if (err) {
@@ -236,4 +255,4 @@ else{
 	})
 }})
 
-module.exports = app
+module.exports = {app,plans}

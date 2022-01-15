@@ -1,11 +1,11 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-	<li class="breadcrumb-item " aria-current="page"><a href="/users/<%=u_id%>">Home</a></li>
-    <li class="breadcrumb-item "><a href="/users/playlists/<%=u_id%>">Create Playlist</a></li> 
-	<li class="breadcrumb-item active">All PlayLists</li>
-</ol>
-</nav>
+<header>
+    <nav class="nav-area">
+        <li  aria-current="page"><a href="/users/<%=u_id%>">Home</a></li>|
+        <li ><a href="/users/playlists/<%=u_id%>">Create Playlist</a></li>|
+        <li>All PlayLists</li>
+    </nav>
+</header>
 <%if(data!= ""){%>
 <div id="container">
 <% data.forEach(function(record){ %>

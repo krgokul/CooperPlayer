@@ -1,15 +1,18 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="/admin/admin_home">Home</a></li>  
+<header>
+	<nav class="nav-area">
+		<li><a href="/admin/admin_home">Home</a></li>|  
 		<% if(type === 'song') {%>
-			<li class="breadcrumb-item active" aria-current="page"></li>All Songs</li>
+			<li>All Songs</li>
 		<% } else {%>
-			<li class="breadcrumb-item active" aria-current="page"></li>All Plans</li>
+			<li>All Plans</li>
 			<% } %>			
-	</ol>
   </nav>
-  <h1><%= title %></h1>
+  <div class="search-box">
+	<button class="btn-search"><i class="fas fa-search"></i></button>
+	<input id="songSearch" type="text" class="input-search" placeholder="Type to Search...">
+  </div> 
+</header>
 <% if (messages.error) { %>
 	<p style="color:red"><%- messages.error %></p>
 <% } %>
@@ -17,7 +20,7 @@
 <% if (messages.success) { %>
 	<p style="color:green"><%- messages.success %></p>
 <% } %>	
-	<input type="text" id="songSearch" placeholder="🔍"> 
+
 <div>
 <table style =" background-color: white;">
 	<thead style="background-color: rgb(27, 23, 37); color: white; text-align: center; font-weight: lighter;">

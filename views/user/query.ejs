@@ -1,10 +1,10 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-	<li class="breadcrumb-item "><a href="/users/<%=u_id%>">Home</a></li>
-	<li class="breadcrumb-item active">Query</li>
-</ol>
-</nav>
+<header>
+    <nav class="nav-area">
+        <li><a href="/users/<%=u_id%>">Home</a></li>|
+        <li>Query</li>
+    </nav>
+</header>
 <div id="cmt_section">
     <% if (messages.success) { %>
         <p style="color:green"><%- messages.success %></p>
@@ -12,7 +12,7 @@
 <form action="/users/query/<%=u_id%>" method="post">   
 <h2>Comments</h2>
 <textarea placeholder="Add a comment .." rows="20" name="comment_text" cols="40"  autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
-<br><button class="btn btn-dark">Post</button>
+<br><button style="border: none;margin-top: 15px;"class="btn-area">Post</button>
 </form> 
 </div>
 

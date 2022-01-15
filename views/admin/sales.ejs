@@ -1,6 +1,53 @@
-<%- include ../layouts/header.ejs %>	
-<h1>sales</h1>
+<%- include ../layouts/header.ejs %>
+
+<header>
+    <nav class="nav-area">
+        <li><a href="/admin/admin_home">Home</a></li>|  
+        <li>Sales Report</li> 
+  </nav>
+</header>
+
+<div class="chart_div">
+    <h5 id="tot" ></h5>
+    <canvas id="myChart" height="500"></canvas>   
+</div>
 <script>
-    
-</script>
+    var plans={}
+    var res = eval('<%- JSON.stringify(res) %>');
+    res.forEach(element => {
+        plans[element] ? plans[element]++ : plans[element] = 1;
+    });
+    document.getElementById('tot').innerHTML="Total purchase of plans - "+Object.values(plans).reduce((a,b) =>  a + b );
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Basic', 'Intermediate', 'Premium', 'Premium Pro'],
+            datasets: [{
+                label: 'Total Purchase',
+                data: [ plans["Basic"], plans["Intermidete"],plans["Premium"], plans["Premium Pro"] ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
 <%- include ../layouts/footer.ejs %>

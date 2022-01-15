@@ -1,11 +1,11 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-	<li class="breadcrumb-item "><a href="/users/<%=u_id%>">Home</a></li>
-    <li class="breadcrumb-item "><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>
-	<li class="breadcrumb-item active">All List</li>
-</ol>
-</nav>
+<header>
+    <nav class="nav-area">
+        <li ><a href="/users/<%=u_id%>">Home</a></li>|
+        <li ><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>|
+        <li >All List</li>
+    </nav>
+</header>
 <div class="playlist_div">
     <div class="playlist_name">
     <% data.forEach(function(record){ %>
@@ -18,7 +18,6 @@
                 <p>No Songs</p>
                 <%}else{%>
                     <div class="song_table">
-                        <div>
                         <table style =" background-color: white;">
                             <thead style="background-color: rgb(27, 23, 37); color: white; text-align: center; font-weight: lighter;">
                             <tr>
@@ -45,10 +44,7 @@
                             <td><%= cur.genre %></td>
                             <td><%= cur.artist %></td>
                             <td>
-                                <form method="post" action="/users/deletefromplaylist/<%=playlist_name%>/<%=res%>/<%=u_id%>" style= "float:right; margin-bottom: 0;" >
-                                    <button class="btn btn-outline-danger"  ><i class="far fa-trash-alt"></i></button>
-                                    </form>
-                                </div>
+                            <a href="/users/deletefromplaylist/<%=playlist_name%>/<%=res%>/<%=u_id%>"><i class="far fa-trash-alt" style="color: red;"></i></a>
                             </td>
                         </tr>       
                        <% } %>
@@ -63,9 +59,7 @@
 </div>
 <script>
 
-
-
-    function clickHandler(imgId){
+function clickHandler(imgId){
 var audioId = imgId+'audio';
 var audioPlayer = document.getElementById(audioId);
 
@@ -76,8 +70,7 @@ var audioPlayer = document.getElementById(audioId);
   				value.pause();
 				$('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
 			}
-		});
-		
+		});	
 		audioPlayer.play();
 		$('#'+imgId).attr("src","/css/img/play.png");
 		

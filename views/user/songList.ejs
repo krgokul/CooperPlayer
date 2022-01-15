@@ -1,17 +1,24 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-	<li class="breadcrumb-item active" aria-current="page"></li>Home</li>
-    <li class="breadcrumb-item "><a href="/users/playlists/<%=u_id%>">Playlist</a></li> 
-	<li class="breadcrumb-item "><a href="/users/upgrade/<%=u_id%>">Upgrade Plan</a></li> 
-    <% if(role === 2) {%>
-    <li class="breadcrumb-item "><a href="/users/query/<%=u_id%>">Query</a></li> 
-    <%}%>
-</ol>
-</nav>
+<header>
+    <!-- <img src="/css/img/logo.png" alt="" class="logo"> -->
+    <nav class="nav-area"> 
+        <li>Home</li>|
+        <li><a href="/users/playlists/<%=u_id%>">Playlist</a></li> |
+        <li><a href="/users/upgrade/<%=u_id%>">Upgrade Plan</a></li>| 
+        <% if(role === 2) {%>
+        <li><a href="/users/query/<%=u_id%>">Query</a></li>| 
+        <li><a href="/users/callertune/<%=u_id%>">Caller tune</a></li>| 
+        <%}%>
+        <li><a href="/users/history/<%=u_id%>">History</a></li> 
+    </nav>
+    <a href="/" class="btn-area">LOGIN</a>
+</header>
+
+<% if (role === 1 && name!= "admin" ){%>
 <div class="ad-div"> 
     <button id="close-btn" ><i class="fas fa-times"></i></button>
 </div>
+<%}%>
 <%if(data!= ""){%>
     <div id="container">
 <% data.forEach(function(record){ %>
@@ -45,37 +52,35 @@
     <%}%>
 </div>
     </body>
-    <%- include ../layouts/footer.ejs %>
     <script >
-         function clickHandler(imgId){
-        var audioId = imgId+'audio';
-        var audioPlayer = document.getElementById(audioId);
-        
-            if(audioPlayer.paused) {
-                var audioPlayers = document.getElementsByTagName("audio");
-                $.each(audioPlayers, function( index, value ) {
-                    if(value.played){
-                          value.pause();
-                        $('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
-                    }
-                });
-                 
-                audioPlayer.play();
-                $('#'+imgId).attr("src","/css/img/play.png");
-                
-            }else{
-                audioPlayer.pause();
-                $('#'+imgId).attr("src","/css/img/pause.png");
-        }
-    }
+    function clickHandler(imgId){
+    var audioId = imgId+'audio';
+    var audioPlayer = document.getElementById(audioId);
     
+        if(audioPlayer.paused) {
+            var audioPlayers = document.getElementsByTagName("audio");
+            $.each(audioPlayers, function( index, value ) {
+                if(value.played){
+                      value.pause();
+                    $('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
+                }
+            });
+             
+            audioPlayer.play();
+            $('#'+imgId).attr("src","/css/img/play.png");
+            
+        }else{
+            audioPlayer.pause();
+            $('#'+imgId).attr("src","/css/img/pause.png");
+    }
+}
     function showad(){
         $('.ad-div').show();
     }
     function closead(){
         $('.ad-div').hide();
     }
-    setInterval(showad,60000);
+    setInterval(showad,180000);
     $('#close-btn').click(function(){
         closead();
     })

@@ -1,20 +1,18 @@
 <%- include ../layouts/header.ejs %>
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-	<li class="breadcrumb-item " aria-current="page"><a href="/users/<%=u_id%>">Home</a></li>
-    <li class="breadcrumb-item active">Create Playlist</li>
-	<li class="breadcrumb-item" aria-current="page"><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>
-</ol>
-</nav>
+<header>
+	<nav class="nav-area">
+		<li><a href="/users/<%=u_id%>">Home</a></li>|
+		<li>Create Playlist</li>|
+		<li ><a href="/users/view_playlist/<%=u_id%>">All PlayLists</a></li>
+	</nav>
+</header>
 
 <div id="play_div">
 <form action="/users/create/<%=u_id%>" method="post">
-	<h1>playlist</h1>
+	<h1>Playlist</h1>
 <input type="text" id="play_id" name="play_name"><br>
-<button class="btn btn-success">Create</button>
-</form>	
-</div>
-<div class="user-playlists">
+<button style="border: none;"class="btn-area ">Create</button>
+</form>
 </div>
 
 <%- include ../layouts/footer.ejs %>
