@@ -1,0 +1,65 @@
+<%- include ../layouts/header.ejs %>
+<header>
+    <nav class="nav-area">
+            <li aria-current="page"><a href="/users/callertune/<%=u_id%>">Caller tune</a></li>
+    </nav>
+</header>
+<div class="song_table">
+    <div>
+    <table style =" background-color: white;">
+        <thead style="background-color: rgb(27, 23, 37); color: white; text-align: center; font-weight: lighter;">
+        <tr>
+            <th>SONG NAME</th>
+            <th>TYPE</th>
+            <th>SONG</th>
+            <th>GENRE</th>
+            <th>ARTIST</th>
+            <th>ACTION</th>
+        </tr>
+        </thead>
+        <% if (data)  { %>
+        <% data.forEach(function(record){ %>
+            <tr>
+                <td><%= record.name %></td>
+                <td><%= record.type %></td>
+                <td>
+                    <img class="btn img" id="<%=record._id%>"  src="/css/img/pause.png" onclick="clickHandler(this.id)">
+                    <audio id="<%=record._id+'audio' %>">  
+                    <source src="<%= record.link %>" type="audio/mpeg" >  
+                  Your browser does not support the html audio tag.  
+                  </audio> </td>
+                <td><%= record.genre %></td>
+                <td><%= record.artist %></td>
+                <td>
+                    <a href="/users/addcallertune_to_user/<%=u_id%>/<%=record.name%>"><i class="fas fa-plus" style="color: #ec255a;"></i></a>
+                </td>
+            </tr>
+        <% }) %>
+        <%}%>
+    </table>
+    </div>
+</div>
+<script>
+function clickHandler(imgId){
+var audioId = imgId+'audio';
+var audioPlayer = document.getElementById(audioId);
+
+	if(audioPlayer.paused) {
+		var audioPlayers = document.getElementsByTagName("audio");
+		$.each(audioPlayers, function( index, value ) {
+			if(value.played){
+  				value.pause();
+				$('#'+value.id.slice(0,-5)).attr("src","/css/img/pause.png");
+			}
+		});
+		
+		audioPlayer.play();
+		$('#'+imgId).attr("src","/css/img/play.png");
+		
+	}else{
+		audioPlayer.pause();
+		$('#'+imgId).attr("src","/css/img/pause.png");
+}
+}
+</script>
+<%- include ../layouts/footer.ejs %>

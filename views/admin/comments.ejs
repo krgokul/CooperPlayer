@@ -1,0 +1,16 @@
+<%- include ../layouts/header.ejs %>
+<header>
+    <nav class="nav-area">
+        <li><a href="/admin/admin_home">Home</a></li>|  
+        <li>Show Comments</li> 
+  </nav>
+</header>
+
+<% query.forEach( record => { %>
+    <div class="note">
+        <h1><%=record.name%></h1>
+        <p><%= record.comment%></p>
+    </div>  
+<%})%>
+
+<%- include ../layouts/footer.ejs %>

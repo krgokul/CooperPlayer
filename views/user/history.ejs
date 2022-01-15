@@ -1,0 +1,42 @@
+<%- include ../layouts/header.ejs %>
+<header>
+    <nav class="nav-area">
+        <li><a href="/users/<%=u_id%>">Home</a></li>|
+        <li>History</li>
+</nav>
+</header>
+<% if (data){ %>
+<div class="song_table">
+    <table style =" background-color: white;">
+        <thead style="background-color: rgb(27, 23, 37); color: white; text-align: center; font-weight: lighter;">
+        <tr>
+            <th>ID</th>
+            <th>TYPE</th>
+            <th>DESCRIPTION</th>
+            <th>DATE</th>
+            <th>ACTION</th>
+        </tr>
+        </thead>
+        <% data.forEach(function(record){ %>
+            <tr>
+                <% var des = record.Description.split("-") %>
+                <td><%= record.Id %></td>
+                <td><%= record.Type %></td>
+                <td><%=des[0]%> - <b><%=des[1]%></b> </td>
+                <td><%= record.Date %></td>
+                    <% if(record.Description.startsWith('A')){ %>
+                        <td style="color:green;font-weight: bolder;">Added</td>        
+                    <% }else if(record.Description.startsWith('U')){ %>
+                        <td style="color:#ffa500;font-weight: bolder;">Updated</td>
+                    <% }else{ %>
+                        <td style="color:red;font-weight: bolder;">Deleted</td>
+                    <% } %>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</div>
+<%}else{%>
+    No history ..
+<%}%>
+<%- include ../layouts/footer.ejs %>
